@@ -8,7 +8,6 @@ const CONNECT_ASSETS = ['connected'];
 const els = {
   installs: document.getElementById('androidInstalls'),
   connects: document.getElementById('androidConnects'),
-  table: document.getElementById('assetsTable').querySelector('tbody'),
   lastUpdate: document.getElementById('lastUpdate'),
   refreshBtn: document.getElementById('refreshBtn'),
   errorBox: document.getElementById('errorBox'),
@@ -77,31 +76,6 @@ function renderTiles(assets) {
   const t = totals(assets);
   animateNumber(els.installs, t.installs);
   animateNumber(els.connects, t.connects);
-}
-
-function renderTable(assets) {
-  if (!assets.length) {
-    els.table.innerHTML = '<tr><td colspan="5" class="loading">No release assets found.</td></tr>';
-    return;
-  }
-  els.table.innerHTML = assets
-    .map((a) => {
-      const badge =
-        a.kind === 'install'
-          ? '<span class="badge badge-install">Android Install</span>'
-          : a.kind === 'connect'
-          ? '<span class="badge badge-connect">Android Connection</span>'
-          : '<span class="badge badge-other">Other</span>';
-      const date = a.published ? new Date(a.published).toISOString().slice(0, 10) : '—';
-      return `<tr>
-        <td>${escapeHtml(a.name)}</td>
-        <td>${badge}</td>
-        <td class="num">${fmt(a.downloads)}</td>
-        <td class="date">${escapeHtml(a.release)}</td>
-        <td class="date">${date}</td>
-      </tr>`;
-    })
-    .join('');
 }
 
 /* ---------------- chart ---------------- */
@@ -297,7 +271,6 @@ async function load() {
 
     const assets = collectAssets(releases);
     renderTiles(assets);
-    renderTable(assets);
     renderChart();
 
     const pts = (state.history.points || []).length;
@@ -306,9 +279,6 @@ async function load() {
   } catch (err) {
     showError(err.message || 'Failed to load statistics.');
     setStatus(false, 'Error');
-    if (!els.table.querySelector('tr:not(.loading)')) {
-      els.table.innerHTML = '<tr><td colspan="5" class="loading">Could not load data.</td></tr>';
-    }
     els.lastUpdate.textContent = 'Update failed';
   } finally {
     els.refreshBtn.classList.remove('loading');
@@ -325,8 +295,6 @@ els.ranges.addEventListener('click', (e) => {
   const v = btn.dataset.days;
   state.rangeDays = v === 'all' ? 'all' : Number(v);
   renderChart();
-  const assets = collectAssets(state.releases);
-  renderTiles(assets);
 });
 
 load();
