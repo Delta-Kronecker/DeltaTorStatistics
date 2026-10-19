@@ -3,66 +3,105 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>DeltaTor Statistics</title>
-  <meta name="description" content="Installation and connection statistics for DeltaTor">
+  <title>DeltaTor — Statistics</title>
+  <meta name="description" content="DeltaTor installation and connection statistics">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📡</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%2308080a'/><text y='.8em' x='.05em' font-size='80' fill='%23d4af37'>Δ</text></svg>">
 </head>
 <body>
-  <div class="bg-glow"></div>
 
-  <header class="site-header">
-    <div class="logo">
-      <span class="logo-mark">&#916;</span>
-      <div>
-        <h1>DeltaTor</h1>
-        <p>Installation &amp; Connection Statistics</p>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <span class="brand-mark">Δ</span>
+        <span class="brand-name">DeltaTor</span>
+        <span class="brand-sep">/</span>
+        <span class="brand-sub">Statistics</span>
+      </div>
+      <nav class="topnav">
+        <a href="#" class="active">Dashboard</a>
+        <a href="https://github.com/Delta-Kronecker/ForInstallationStatistics/releases" target="_blank" rel="noopener">Releases</a>
+        <a href="https://github.com/Delta-Kronecker/DeltaTorStatistics" target="_blank" rel="noopener">Source</a>
+      </nav>
+      <div class="topbar-right">
+        <span class="live-dot" id="liveDot"></span>
+        <span class="live-label" id="liveLabel">Connecting…</span>
+        <button id="refreshBtn" class="btn btn-gold">Refresh</button>
       </div>
     </div>
-    <button id="refreshBtn" class="refresh-btn" title="Refresh">
-      <span class="refresh-icon">&#10227;</span>
-      <span>Refresh</span>
-    </button>
   </header>
 
-  <main>
-    <section class="cards">
-      <article class="card card-install">
-        <div class="card-head">
-          <span class="card-icon">&#11015;&#65039;</span>
-          <span class="card-label">Android Installs</span>
-        </div>
-        <div class="card-value" id="androidInstalls">&mdash;</div>
-        <div class="card-sub">Total downloads of DeltaTorAndroid + DeltaTorAndroid213</div>
-      </article>
+  <main class="page">
 
-      <article class="card card-connect">
-        <div class="card-head">
-          <span class="card-icon">&#128279;</span>
-          <span class="card-label">Android Connections</span>
-        </div>
-        <div class="card-value" id="androidConnects">&mdash;</div>
-        <div class="card-sub">Successful connections recorded</div>
-      </article>
+    <div class="page-head">
+      <div>
+        <h1>Dashboard</h1>
+        <p class="crumb">Home <span>›</span> Android <span>›</span> Overview</p>
+      </div>
+      <div class="page-meta">
+        <span id="lastUpdate">—</span>
+      </div>
+    </div>
 
-      <article class="card card-windows is-soon">
-        <div class="card-head">
-          <span class="card-icon">&#129704;</span>
-          <span class="card-label">Windows</span>
-        </div>
-        <div class="card-value">Coming Soon</div>
-        <div class="card-sub">Windows install &amp; connection stats coming soon</div>
-        <div class="soon-badge">Coming Soon</div>
-      </article>
+    <section class="tiles">
+      <div class="tile">
+        <div class="tile-label">Android Installs <span class="tile-tag" id="installsRangeTag">all time</span></div>
+        <div class="tile-value" id="androidInstalls">—</div>
+        <div class="tile-foot"><span class="delta up" id="installsDelta">—</span> <span class="muted">in selected range</span></div>
+      </div>
+
+      <div class="tile">
+        <div class="tile-label">Android Connections <span class="tile-tag" id="connectsRangeTag">all time</span></div>
+        <div class="tile-value" id="androidConnects">—</div>
+        <div class="tile-foot"><span class="delta up" id="connectsDelta">—</span> <span class="muted">in selected range</span></div>
+      </div>
+
+      <div class="tile">
+        <div class="tile-label">Windows <span class="tile-tag soon">soon</span></div>
+        <div class="tile-value tile-soon">Coming&nbsp;Soon</div>
+        <div class="tile-foot"><span class="muted">installation &amp; connection stats</span></div>
+      </div>
+
+      <div class="tile">
+        <div class="tile-label">Tracked Assets <span class="tile-tag">live</span></div>
+        <div class="tile-value" id="assetCount">—</div>
+        <div class="tile-foot"><span class="muted">across all releases</span></div>
+      </div>
     </section>
 
     <section class="panel">
       <div class="panel-head">
-        <h2>Download Details</h2>
-        <span class="last-update" id="lastUpdate">Fetching&hellip;</span>
+        <div>
+          <h2>Installs &amp; Connections Over Time</h2>
+          <p class="panel-sub">Snapshot data collected hourly by GitHub Actions</p>
+        </div>
+        <div class="ranges" id="ranges">
+          <button class="range" data-days="1">24H</button>
+          <button class="range" data-days="7">7D</button>
+          <button class="range active" data-days="30">30D</button>
+          <button class="range" data-days="90">90D</button>
+          <button class="range" data-days="all">ALL</button>
+        </div>
+      </div>
+      <div class="chart-box">
+        <canvas id="chart"></canvas>
+        <div class="chart-empty" id="chartEmpty">Waiting for collected snapshots…<br><small>Charts fill in as hourly data accumulates.</small></div>
+      </div>
+      <div class="legend">
+        <span class="lg lg-gold"></span> Installs
+        <span class="lg lg-line"></span> Connections
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <div>
+          <h2>Asset Downloads</h2>
+          <p class="panel-sub">Current totals from GitHub releases</p>
+        </div>
       </div>
       <div class="table-wrap">
         <table id="assetsTable">
@@ -70,34 +109,29 @@
             <tr>
               <th>Asset</th>
               <th>Type</th>
-              <th>Downloads</th>
+              <th class="ta-r">Downloads</th>
+              <th class="ta-r">Share</th>
+              <th>Release</th>
               <th>Published</th>
             </tr>
           </thead>
           <tbody>
-            <tr><td colspan="4" class="loading">Loading statistics from GitHub&hellip;</td></tr>
+            <tr><td colspan="6" class="loading">Loading…</td></tr>
           </tbody>
         </table>
       </div>
     </section>
 
-    <section class="panel">
-      <div class="panel-head">
-        <h2>Download Distribution</h2>
-      </div>
-      <div id="bars" class="bars">
-        <div class="loading">Loading&hellip;</div>
-      </div>
-    </section>
   </main>
 
-  <footer class="site-footer">
-    <p>Data source: <a href="https://github.com/Delta-Kronecker/ForInstallationStatistics/releases" target="_blank" rel="noopener">ForInstallationStatistics releases</a></p>
-    <p class="muted">Windows statistics coming soon.</p>
+  <footer class="footer">
+    <span>DeltaTor Statistics · GitHub Pages</span>
+    <span class="muted">Windows statistics coming soon.</span>
   </footer>
 
   <div id="errorBox" class="error-box hidden"></div>
 
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
