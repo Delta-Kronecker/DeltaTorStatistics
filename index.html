@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DeltaTor Statistics</title>
+  <meta name="description" content="Installation and connection statistics for DeltaTor">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📡</text></svg>">
+</head>
+<body>
+  <div class="bg-glow"></div>
+
+  <header class="site-header">
+    <div class="logo">
+      <span class="logo-mark">&#916;</span>
+      <div>
+        <h1>DeltaTor</h1>
+        <p>Installation &amp; Connection Statistics</p>
+      </div>
+    </div>
+    <button id="refreshBtn" class="refresh-btn" title="Refresh">
+      <span class="refresh-icon">&#10227;</span>
+      <span>Refresh</span>
+    </button>
+  </header>
+
+  <main>
+    <section class="cards">
+      <article class="card card-install">
+        <div class="card-head">
+          <span class="card-icon">&#11015;&#65039;</span>
+          <span class="card-label">Android Installs</span>
+        </div>
+        <div class="card-value" id="androidInstalls">&mdash;</div>
+        <div class="card-sub">Total downloads of DeltaTorAndroid + DeltaTorAndroid213</div>
+      </article>
+
+      <article class="card card-connect">
+        <div class="card-head">
+          <span class="card-icon">&#128279;</span>
+          <span class="card-label">Android Connections</span>
+        </div>
+        <div class="card-value" id="androidConnects">&mdash;</div>
+        <div class="card-sub">Successful connections recorded</div>
+      </article>
+
+      <article class="card card-windows is-soon">
+        <div class="card-head">
+          <span class="card-icon">&#129704;</span>
+          <span class="card-label">Windows</span>
+        </div>
+        <div class="card-value">Coming Soon</div>
+        <div class="card-sub">Windows install &amp; connection stats coming soon</div>
+        <div class="soon-badge">Coming Soon</div>
+      </article>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <h2>Download Details</h2>
+        <span class="last-update" id="lastUpdate">Fetching&hellip;</span>
+      </div>
+      <div class="table-wrap">
+        <table id="assetsTable">
+          <thead>
+            <tr>
+              <th>Asset</th>
+              <th>Type</th>
+              <th>Downloads</th>
+              <th>Published</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td colspan="4" class="loading">Loading statistics from GitHub&hellip;</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <h2>Download Distribution</h2>
+      </div>
+      <div id="bars" class="bars">
+        <div class="loading">Loading&hellip;</div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Data source: <a href="https://github.com/Delta-Kronecker/ForInstallationStatistics/releases" target="_blank" rel="noopener">ForInstallationStatistics releases</a></p>
+    <p class="muted">Windows statistics coming soon.</p>
+  </footer>
+
+  <div id="errorBox" class="error-box hidden"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
