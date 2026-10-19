@@ -12,7 +12,6 @@ const els = {
   connectsDelta: document.getElementById('connectsDelta'),
   installsTag: document.getElementById('installsRangeTag'),
   connectsTag: document.getElementById('connectsRangeTag'),
-  assetCount: document.getElementById('assetCount'),
   table: document.getElementById('assetsTable').querySelector('tbody'),
   lastUpdate: document.getElementById('lastUpdate'),
   refreshBtn: document.getElementById('refreshBtn'),
@@ -94,7 +93,6 @@ function renderTiles(assets) {
   const t = totals(assets);
   animateNumber(els.installs, t.installs);
   animateNumber(els.connects, t.connects);
-  els.assetCount.textContent = assets.length;
 
   const pts = state.history.points || [];
   const label = state.rangeDays === 'all' ? 'all time' : state.rangeDays === 1 ? 'last 24h' : `last ${state.rangeDays}d`;
@@ -121,10 +119,9 @@ function setDelta(el, v) {
 
 function renderTable(assets) {
   if (!assets.length) {
-    els.table.innerHTML = '<tr><td colspan="6" class="loading">No release assets found.</td></tr>';
+    els.table.innerHTML = '<tr><td colspan="5" class="loading">No release assets found.</td></tr>';
     return;
   }
-  const max = Math.max(...assets.map((a) => a.downloads), 1);
   els.table.innerHTML = assets
     .map((a) => {
       const badge =
@@ -134,26 +131,15 @@ function renderTable(assets) {
           ? '<span class="badge badge-connect">Android Connection</span>'
           : '<span class="badge badge-other">Other</span>';
       const date = a.published ? new Date(a.published).toISOString().slice(0, 10) : '—';
-      const share = (a.downloads / max) * 100;
       return `<tr>
         <td>${escapeHtml(a.name)}</td>
         <td>${badge}</td>
         <td class="num">${fmt(a.downloads)}</td>
-        <td>
-          <div class="share">
-            <span class="share-val">${((a.downloads / sumSafe(assets)) * 100).toFixed(1)}%</span>
-            <span class="share-track"><span class="share-fill" style="width:${share}%"></span></span>
-          </div>
-        </td>
         <td class="date">${escapeHtml(a.release)}</td>
         <td class="date">${date}</td>
       </tr>`;
     })
     .join('');
-}
-
-function sumSafe(assets) {
-  return Math.max(assets.reduce((s, a) => s + a.downloads, 0), 1);
 }
 
 /* ---------------- chart ---------------- */
@@ -359,7 +345,7 @@ async function load() {
     showError(err.message || 'Failed to load statistics.');
     setStatus(false, 'Error');
     if (!els.table.querySelector('tr:not(.loading)')) {
-      els.table.innerHTML = '<tr><td colspan="6" class="loading">Could not load data.</td></tr>';
+      els.table.innerHTML = '<tr><td colspan="5" class="loading">Could not load data.</td></tr>';
     }
     els.lastUpdate.textContent = 'Update failed';
   } finally {
