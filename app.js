@@ -8,10 +8,6 @@ const CONNECT_ASSETS = ['connected'];
 const els = {
   installs: document.getElementById('androidInstalls'),
   connects: document.getElementById('androidConnects'),
-  installsDelta: document.getElementById('installsDelta'),
-  connectsDelta: document.getElementById('connectsDelta'),
-  installsTag: document.getElementById('installsRangeTag'),
-  connectsTag: document.getElementById('connectsRangeTag'),
   table: document.getElementById('assetsTable').querySelector('tbody'),
   lastUpdate: document.getElementById('lastUpdate'),
   refreshBtn: document.getElementById('refreshBtn'),
@@ -25,7 +21,7 @@ const els = {
 const state = {
   releases: [],
   history: { points: [] },
-  rangeDays: 30,
+  rangeDays: 'all',
   chart: null,
 };
 
@@ -75,46 +71,12 @@ function pointsIn(points, days) {
   return points.filter((p) => new Date(p.t).getTime() >= cutoff);
 }
 
-function sumDelta(points, days, key) {
-  if (points.length < 2) return 0;
-  const slice = pointsIn(points, days);
-  if (slice.length < 2) return 0;
-  let delta = 0;
-  for (let i = 1; i < slice.length; i++) {
-    const d = slice[i].assets[key] - slice[i - 1].assets[key];
-    if (d > 0) delta += d;
-  }
-  return delta;
-}
-
 /* ---------------- rendering ---------------- */
 
 function renderTiles(assets) {
   const t = totals(assets);
   animateNumber(els.installs, t.installs);
   animateNumber(els.connects, t.connects);
-
-  const pts = state.history.points || [];
-  const label = state.rangeDays === 'all' ? 'all time' : state.rangeDays === 1 ? 'last 24h' : `last ${state.rangeDays}d`;
-  els.installsTag.textContent = label;
-  els.connectsTag.textContent = label;
-
-  if (pts.length >= 2) {
-    const di = sumDelta(pts, state.rangeDays, 'install');
-    const dc = sumDelta(pts, state.rangeDays, 'connect');
-    setDelta(els.installsDelta, di);
-    setDelta(els.connectsDelta, dc);
-  } else {
-    els.installsDelta.textContent = '—';
-    els.connectsDelta.textContent = '—';
-    els.installsDelta.className = 'delta flat';
-    els.connectsDelta.className = 'delta flat';
-  }
-}
-
-function setDelta(el, v) {
-  el.textContent = (v > 0 ? '+' : '') + fmt(v);
-  el.className = v > 0 ? 'delta up' : 'delta flat';
 }
 
 function renderTable(assets) {
