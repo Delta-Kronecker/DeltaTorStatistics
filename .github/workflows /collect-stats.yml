@@ -1,5 +1,4 @@
 name: Collect stats
-
 on:
   schedule:
     - cron: "0 * * * *"
