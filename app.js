@@ -20,7 +20,7 @@ const els = {
 const state = {
   releases: [],
   history: { points: [] },
-  rangeDays: 'all',
+  rangeDays: 1,
   chart: null,
 };
 
