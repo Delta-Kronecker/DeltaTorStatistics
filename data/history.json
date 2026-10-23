@@ -1,1 +1,481 @@
-{"updated":"2026-10-23T15:48:13.992Z","points":[{"t":"2026-10-20T10:00:47.945Z","assets":{"install":766,"connect":161}},{"t":"2026-10-20T13:54:11.325Z","assets":{"install":778,"connect":223}},{"t":"2026-10-20T19:33:09.192Z","assets":{"install":794,"connect":343}},{"t":"2026-10-20T20:05:00.320Z","assets":{"install":796,"connect":351}},{"t":"2026-10-20T20:47:48.331Z","assets":{"install":797,"connect":365}},{"t":"2026-10-20T21:44:57.878Z","assets":{"install":800,"connect":375}},{"t":"2026-10-20T22:30:40.976Z","assets":{"install":800,"connect":383}},{"t":"2026-10-20T23:16:41.496Z","assets":{"install":801,"connect":387}},{"t":"2026-10-20T23:59:26.982Z","assets":{"install":805,"connect":397}},{"t":"2026-10-21T00:46:47.301Z","assets":{"install":806,"connect":399}},{"t":"2026-10-21T01:45:35.783Z","assets":{"install":807,"connect":406}},{"t":"2026-10-21T05:04:30.599Z","assets":{"install":812,"connect":430}},{"t":"2026-10-21T06:12:16.738Z","assets":{"install":812,"connect":434}},{"t":"2026-10-21T07:55:35.255Z","assets":{"install":818,"connect":462}},{"t":"2026-10-21T08:45:07.801Z","assets":{"install":819,"connect":469}},{"t":"2026-10-21T09:31:22.927Z","assets":{"install":820,"connect":480}},{"t":"2026-10-21T10:28:59.603Z","assets":{"install":823,"connect":492}},{"t":"2026-10-21T12:09:14.345Z","assets":{"install":826,"connect":523}},{"t":"2026-10-21T13:05:25.986Z","assets":{"install":829,"connect":535}},{"t":"2026-10-21T14:01:22.233Z","assets":{"install":829,"connect":544}},{"t":"2026-10-21T14:35:22.946Z","assets":{"install":829,"connect":555}},{"t":"2026-10-21T15:29:55.979Z","assets":{"install":829,"connect":565}},{"t":"2026-10-21T16:00:49.583Z","assets":{"install":829,"connect":572}},{"t":"2026-10-21T17:30:01.053Z","assets":{"install":830,"connect":600}},{"t":"2026-10-21T18:10:42.476Z","assets":{"install":830,"connect":606}},{"t":"2026-10-21T18:48:17.044Z","assets":{"install":832,"connect":612}},{"t":"2026-10-21T19:30:20.596Z","assets":{"install":834,"connect":625}},{"t":"2026-10-21T20:18:29.383Z","assets":{"install":835,"connect":633}},{"t":"2026-10-21T20:49:27.737Z","assets":{"install":835,"connect":638}},{"t":"2026-10-21T21:51:31.942Z","assets":{"install":835,"connect":647}},{"t":"2026-10-21T22:35:50.125Z","assets":{"install":836,"connect":655}},{"t":"2026-10-21T23:29:46.434Z","assets":{"install":836,"connect":658}},{"t":"2026-10-22T00:03:29.579Z","assets":{"install":837,"connect":664}},{"t":"2026-10-22T00:48:44.198Z","assets":{"install":838,"connect":665}},{"t":"2026-10-22T01:39:34.568Z","assets":{"install":839,"connect":670}},{"t":"2026-10-22T05:06:18.506Z","assets":{"install":843,"connect":689}},{"t":"2026-10-22T06:16:57.870Z","assets":{"install":844,"connect":707}},{"t":"2026-10-22T07:52:06.174Z","assets":{"install":851,"connect":728}},{"t":"2026-10-22T08:47:22.903Z","assets":{"install":851,"connect":732}},{"t":"2026-10-22T09:34:12.481Z","assets":{"install":853,"connect":746}},{"t":"2026-10-22T10:29:30.002Z","assets":{"install":855,"connect":764}},{"t":"2026-10-22T12:12:46.147Z","assets":{"install":860,"connect":797}},{"t":"2026-10-22T13:06:42.910Z","assets":{"install":861,"connect":810}},{"t":"2026-10-22T13:59:27.878Z","assets":{"install":862,"connect":824}},{"t":"2026-10-22T14:36:53.975Z","assets":{"install":863,"connect":840}},{"t":"2026-10-22T15:29:25.205Z","assets":{"install":865,"connect":861}},{"t":"2026-10-22T17:26:56.911Z","assets":{"install":871,"connect":896}},{"t":"2026-10-22T18:07:23.256Z","assets":{"install":873,"connect":914}},{"t":"2026-10-22T18:41:12.505Z","assets":{"install":873,"connect":923}},{"t":"2026-10-22T19:22:21.302Z","assets":{"install":874,"connect":934}},{"t":"2026-10-22T20:14:34.726Z","assets":{"install":874,"connect":959}},{"t":"2026-10-22T21:46:41.730Z","assets":{"install":879,"connect":992}},{"t":"2026-10-22T22:37:33.014Z","assets":{"install":881,"connect":1005}},{"t":"2026-10-22T23:29:20.605Z","assets":{"install":882,"connect":1018}},{"t":"2026-10-23T00:02:06.172Z","assets":{"install":885,"connect":1024}},{"t":"2026-10-23T00:49:42.804Z","assets":{"install":888,"connect":1032}},{"t":"2026-10-23T01:41:25.892Z","assets":{"install":891,"connect":1047}},{"t":"2026-10-23T05:05:56.825Z","assets":{"install":901,"connect":1088}},{"t":"2026-10-23T06:10:49.378Z","assets":{"install":902,"connect":1110}},{"t":"2026-10-23T07:51:03.376Z","assets":{"install":907,"connect":1134}},{"t":"2026-10-23T08:43:02.696Z","assets":{"install":911,"connect":1144}},{"t":"2026-10-23T09:29:54.853Z","assets":{"install":915,"connect":1155}},{"t":"2026-10-23T10:25:08.478Z","assets":{"install":918,"connect":1179}},{"t":"2026-10-23T11:53:38.392Z","assets":{"install":922,"connect":1211}},{"t":"2026-10-23T12:46:18.638Z","assets":{"install":926,"connect":1240}},{"t":"2026-10-23T13:42:17.420Z","assets":{"install":927,"connect":1257}},{"t":"2026-10-23T14:20:50.599Z","assets":{"install":930,"connect":1264}},{"t":"2026-10-23T15:21:32.069Z","assets":{"install":930,"connect":1282}}]}
+{
+  "updated": "2026-10-23T15:48:13.992Z",
+  "points": [
+    {
+      "t": "2026-10-20T10:00:47.945Z",
+      "assets": {
+        "install": 766,
+        "connect": 161
+      }
+    },
+    {
+      "t": "2026-10-20T13:54:11.325Z",
+      "assets": {
+        "install": 778,
+        "connect": 223
+      }
+    },
+    {
+      "t": "2026-10-20T19:33:09.192Z",
+      "assets": {
+        "install": 794,
+        "connect": 343
+      }
+    },
+    {
+      "t": "2026-10-20T20:05:00.320Z",
+      "assets": {
+        "install": 796,
+        "connect": 351
+      }
+    },
+    {
+      "t": "2026-10-20T20:47:48.331Z",
+      "assets": {
+        "install": 797,
+        "connect": 365
+      }
+    },
+    {
+      "t": "2026-10-20T21:44:57.878Z",
+      "assets": {
+        "install": 800,
+        "connect": 375
+      }
+    },
+    {
+      "t": "2026-10-20T22:30:40.976Z",
+      "assets": {
+        "install": 800,
+        "connect": 383
+      }
+    },
+    {
+      "t": "2026-10-20T23:16:41.496Z",
+      "assets": {
+        "install": 801,
+        "connect": 387
+      }
+    },
+    {
+      "t": "2026-10-20T23:59:26.982Z",
+      "assets": {
+        "install": 805,
+        "connect": 397
+      }
+    },
+    {
+      "t": "2026-10-21T00:46:47.301Z",
+      "assets": {
+        "install": 806,
+        "connect": 399
+      }
+    },
+    {
+      "t": "2026-10-21T01:45:35.783Z",
+      "assets": {
+        "install": 807,
+        "connect": 406
+      }
+    },
+    {
+      "t": "2026-10-21T05:04:30.599Z",
+      "assets": {
+        "install": 812,
+        "connect": 430
+      }
+    },
+    {
+      "t": "2026-10-21T06:12:16.738Z",
+      "assets": {
+        "install": 812,
+        "connect": 434
+      }
+    },
+    {
+      "t": "2026-10-21T07:55:35.255Z",
+      "assets": {
+        "install": 818,
+        "connect": 462
+      }
+    },
+    {
+      "t": "2026-10-21T08:45:07.801Z",
+      "assets": {
+        "install": 819,
+        "connect": 469
+      }
+    },
+    {
+      "t": "2026-10-21T09:31:22.927Z",
+      "assets": {
+        "install": 820,
+        "connect": 480
+      }
+    },
+    {
+      "t": "2026-10-21T10:28:59.603Z",
+      "assets": {
+        "install": 823,
+        "connect": 492
+      }
+    },
+    {
+      "t": "2026-10-21T12:09:14.345Z",
+      "assets": {
+        "install": 826,
+        "connect": 523
+      }
+    },
+    {
+      "t": "2026-10-21T13:05:25.986Z",
+      "assets": {
+        "install": 829,
+        "connect": 535
+      }
+    },
+    {
+      "t": "2026-10-21T14:01:22.233Z",
+      "assets": {
+        "install": 829,
+        "connect": 544
+      }
+    },
+    {
+      "t": "2026-10-21T14:35:22.946Z",
+      "assets": {
+        "install": 829,
+        "connect": 555
+      }
+    },
+    {
+      "t": "2026-10-21T15:29:55.979Z",
+      "assets": {
+        "install": 829,
+        "connect": 565
+      }
+    },
+    {
+      "t": "2026-10-21T16:00:49.583Z",
+      "assets": {
+        "install": 829,
+        "connect": 572
+      }
+    },
+    {
+      "t": "2026-10-21T17:30:01.053Z",
+      "assets": {
+        "install": 830,
+        "connect": 600
+      }
+    },
+    {
+      "t": "2026-10-21T18:10:42.476Z",
+      "assets": {
+        "install": 830,
+        "connect": 606
+      }
+    },
+    {
+      "t": "2026-10-21T18:48:17.044Z",
+      "assets": {
+        "install": 832,
+        "connect": 612
+      }
+    },
+    {
+      "t": "2026-10-21T19:30:20.596Z",
+      "assets": {
+        "install": 834,
+        "connect": 625
+      }
+    },
+    {
+      "t": "2026-10-21T20:18:29.383Z",
+      "assets": {
+        "install": 835,
+        "connect": 633
+      }
+    },
+    {
+      "t": "2026-10-21T20:49:27.737Z",
+      "assets": {
+        "install": 835,
+        "connect": 638
+      }
+    },
+    {
+      "t": "2026-10-21T21:51:31.942Z",
+      "assets": {
+        "install": 835,
+        "connect": 647
+      }
+    },
+    {
+      "t": "2026-10-21T22:35:50.125Z",
+      "assets": {
+        "install": 836,
+        "connect": 655
+      }
+    },
+    {
+      "t": "2026-10-21T23:29:46.434Z",
+      "assets": {
+        "install": 836,
+        "connect": 658
+      }
+    },
+    {
+      "t": "2026-10-22T00:03:29.579Z",
+      "assets": {
+        "install": 837,
+        "connect": 664
+      }
+    },
+    {
+      "t": "2026-10-22T00:48:44.198Z",
+      "assets": {
+        "install": 838,
+        "connect": 665
+      }
+    },
+    {
+      "t": "2026-10-22T01:39:34.568Z",
+      "assets": {
+        "install": 839,
+        "connect": 670
+      }
+    },
+    {
+      "t": "2026-10-22T05:06:18.506Z",
+      "assets": {
+        "install": 843,
+        "connect": 689
+      }
+    },
+    {
+      "t": "2026-10-22T06:16:57.870Z",
+      "assets": {
+        "install": 844,
+        "connect": 707
+      }
+    },
+    {
+      "t": "2026-10-22T07:52:06.174Z",
+      "assets": {
+        "install": 851,
+        "connect": 728
+      }
+    },
+    {
+      "t": "2026-10-22T08:47:22.903Z",
+      "assets": {
+        "install": 851,
+        "connect": 732
+      }
+    },
+    {
+      "t": "2026-10-22T09:34:12.481Z",
+      "assets": {
+        "install": 853,
+        "connect": 746
+      }
+    },
+    {
+      "t": "2026-10-22T10:29:30.002Z",
+      "assets": {
+        "install": 855,
+        "connect": 764
+      }
+    },
+    {
+      "t": "2026-10-22T12:12:46.147Z",
+      "assets": {
+        "install": 860,
+        "connect": 797
+      }
+    },
+    {
+      "t": "2026-10-22T13:06:42.910Z",
+      "assets": {
+        "install": 861,
+        "connect": 810
+      }
+    },
+    {
+      "t": "2026-10-22T13:59:27.878Z",
+      "assets": {
+        "install": 862,
+        "connect": 824
+      }
+    },
+    {
+      "t": "2026-10-22T14:36:53.975Z",
+      "assets": {
+        "install": 863,
+        "connect": 840
+      }
+    },
+    {
+      "t": "2026-10-22T15:29:25.205Z",
+      "assets": {
+        "install": 865,
+        "connect": 861
+      }
+    },
+    {
+      "t": "2026-10-22T17:26:56.911Z",
+      "assets": {
+        "install": 871,
+        "connect": 896
+      }
+    },
+    {
+      "t": "2026-10-22T18:07:23.256Z",
+      "assets": {
+        "install": 873,
+        "connect": 914
+      }
+    },
+    {
+      "t": "2026-10-22T18:41:12.505Z",
+      "assets": {
+        "install": 873,
+        "connect": 923
+      }
+    },
+    {
+      "t": "2026-10-22T19:22:21.302Z",
+      "assets": {
+        "install": 874,
+        "connect": 934
+      }
+    },
+    {
+      "t": "2026-10-22T20:14:34.726Z",
+      "assets": {
+        "install": 874,
+        "connect": 959
+      }
+    },
+    {
+      "t": "2026-10-22T21:46:41.730Z",
+      "assets": {
+        "install": 879,
+        "connect": 992
+      }
+    },
+    {
+      "t": "2026-10-22T22:37:33.014Z",
+      "assets": {
+        "install": 881,
+        "connect": 1005
+      }
+    },
+    {
+      "t": "2026-10-22T23:29:20.605Z",
+      "assets": {
+        "install": 882,
+        "connect": 1018
+      }
+    },
+    {
+      "t": "2026-10-23T00:02:06.172Z",
+      "assets": {
+        "install": 885,
+        "connect": 1024
+      }
+    },
+    {
+      "t": "2026-10-23T00:49:42.804Z",
+      "assets": {
+        "install": 888,
+        "connect": 1032
+      }
+    },
+    {
+      "t": "2026-10-23T01:41:25.892Z",
+      "assets": {
+        "install": 891,
+        "connect": 1047
+      }
+    },
+    {
+      "t": "2026-10-23T05:05:56.825Z",
+      "assets": {
+        "install": 901,
+        "connect": 1088
+      }
+    },
+    {
+      "t": "2026-10-23T06:10:49.378Z",
+      "assets": {
+        "install": 902,
+        "connect": 1110
+      }
+    },
+    {
+      "t": "2026-10-23T07:51:03.376Z",
+      "assets": {
+        "install": 907,
+        "connect": 1134
+      }
+    },
+    {
+      "t": "2026-10-23T08:43:02.696Z",
+      "assets": {
+        "install": 911,
+        "connect": 1144
+      }
+    },
+    {
+      "t": "2026-10-23T09:29:54.853Z",
+      "assets": {
+        "install": 915,
+        "connect": 1155
+      }
+    },
+    {
+      "t": "2026-10-23T10:25:08.478Z",
+      "assets": {
+        "install": 918,
+        "connect": 1179
+      }
+    },
+    {
+      "t": "2026-10-23T11:53:38.392Z",
+      "assets": {
+        "install": 922,
+        "connect": 1211
+      }
+    },
+    {
+      "t": "2026-10-23T12:46:18.638Z",
+      "assets": {
+        "install": 926,
+        "connect": 1240
+      }
+    },
+    {
+      "t": "2026-10-23T13:42:17.420Z",
+      "assets": {
+        "install": 927,
+        "connect": 1257
+      }
+    },
+    {
+      "t": "2026-10-23T14:20:50.599Z",
+      "assets": {
+        "install": 930,
+        "connect": 1264
+      }
+    },
+    {
+      "t": "2026-10-23T15:21:32.069Z",
+      "assets": {
+        "install": 930,
+        "connect": 1282
+      }
+    }
+  ]
+}

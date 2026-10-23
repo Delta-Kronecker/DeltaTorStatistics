@@ -2,7 +2,7 @@ const REPO = 'Delta-Kronecker/ForInstallationStatistics';
 const API = `https://api.github.com/repos/${REPO}/releases?per_page=100`;
 const HISTORY_URL = 'data/history.json';
 
-const INSTALL_ASSETS = ['deltatorandroid', 'deltatorandroid213'];
+const INSTALL_ASSETS = ['deltatorandroid213'];
 const CONNECT_ASSETS = ['connected'];
 
 const els = {
