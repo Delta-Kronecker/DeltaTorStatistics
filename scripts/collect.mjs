@@ -8,18 +8,27 @@ const HISTORY = path.resolve('data/history.json');
 const MAX_POINTS = 90 * 24;
 const MIN_GAP_MS = 50 * 60 * 1000;
 
+// Keep in sync with the asset lists in app.js
 const INSTALL = ['deltatorandroid213'];
 const CONNECT = ['connected'];
 
 const headers = { Accept: 'application/vnd.github+json' };
 if (process.env.GITHUB_TOKEN) headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
 
-const res = await fetch(API, { headers });
-if (!res.ok) {
-  console.error(`GitHub API error: ${res.status}`);
+let releases;
+try {
+  releases = [];
+  for (let page = 1; page <= 10; page++) {
+    const res = await fetch(`${API}&page=${page}`, { headers });
+    if (!res.ok) throw new Error(`GitHub API error: ${res.status}`);
+    const batch = await res.json();
+    releases.push(...batch);
+    if (batch.length < 100) break;
+  }
+} catch (err) {
+  console.error(String(err.message || err));
   process.exit(1);
 }
-const releases = await res.json();
 
 const assets = { install: 0, connect: 0, raw: {} };
 for (const rel of releases) {
@@ -34,7 +43,12 @@ for (const rel of releases) {
 let history = { updated: null, points: [] };
 if (existsSync(HISTORY)) {
   try {
-    history = JSON.parse(await readFile(HISTORY, 'utf8'));
+    const parsed = JSON.parse(await readFile(HISTORY, 'utf8'));
+    if (parsed && Array.isArray(parsed.points)) {
+      history = parsed;
+    } else {
+      console.warn('history.json malformed, recreating');
+    }
   } catch {
     console.warn('history.json unreadable, recreating');
   }

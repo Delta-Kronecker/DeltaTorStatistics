@@ -2,6 +2,7 @@ const REPO = 'Delta-Kronecker/ForInstallationStatistics';
 const API = `https://api.github.com/repos/${REPO}/releases?per_page=100`;
 const HISTORY_URL = 'data/history.json';
 
+// Keep in sync with the asset lists in scripts/collect.mjs
 const INSTALL_ASSETS = ['deltatorandroid213'];
 const CONNECT_ASSETS = ['connected'];
 
@@ -15,7 +16,6 @@ const els = {
 };
 
 const state = {
-  releases: [],
   history: { points: [] },
   rangeDays: 1,
   chart: null,
@@ -77,6 +77,8 @@ function renderTiles(assets) {
 
 /* ---------------- chart ---------------- */
 
+const EMPTY_MSG = 'Not enough snapshots in this range yet.<br><small>A snapshot is collected every hour.</small>';
+
 function bucketConfig(days) {
   if (days === 1) return { ms: 3600000, fmt: (d) => d.getHours().toString().padStart(2, '0') + ':00' };
   if (days === 7) return { ms: 21600000, fmt: (d) => `${d.getDate()}/${d.getMonth() + 1} ${d.getHours().toString().padStart(2, '0')}h` };
@@ -117,6 +119,9 @@ function buildSeries(points, days) {
 function renderChart() {
   const series = buildSeries(state.history.points || [], state.rangeDays);
   if (!series || typeof Chart === 'undefined') {
+    els.chartEmpty.innerHTML = typeof Chart === 'undefined'
+      ? 'Chart library failed to load.<br><small>Reload the page.</small>'
+      : EMPTY_MSG;
     els.chartEmpty.classList.remove('hidden');
     if (state.chart) {
       state.chart.destroy();
@@ -236,10 +241,6 @@ function animateNumber(el, target) {
   })(performance.now());
 }
 
-function escapeHtml(s) {
-  return String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-}
-
 /* ---------------- load ---------------- */
 
 async function loadHistory() {
@@ -253,26 +254,34 @@ async function loadHistory() {
 }
 
 async function loadLive() {
-  const res = await fetch(API, { headers: { Accept: 'application/vnd.github+json' } });
-  if (res.status === 403 || res.status === 429) throw new Error('GitHub API rate limit reached. Try again in a few minutes.');
-  if (!res.ok) throw new Error(`GitHub API error: ${res.status}`);
-  return res.json();
+  const releases = [];
+  for (let page = 1; page <= 10; page++) {
+    const res = await fetch(`${API}&page=${page}`, { headers: { Accept: 'application/vnd.github+json' } });
+    if (res.status === 403 || res.status === 429) throw new Error('GitHub API rate limit reached. Try again in a few minutes.');
+    if (!res.ok) throw new Error(`GitHub API error: ${res.status}`);
+    const batch = await res.json();
+    releases.push(...batch);
+    if (batch.length < 100) break;
+  }
+  return releases;
 }
 
 async function load() {
+  await loadHistory();
+
   try {
-    const [releases] = await Promise.all([loadLive(), loadHistory()]);
-    state.releases = releases;
-
-    const assets = collectAssets(releases);
-    renderTiles(assets);
-    renderChart();
-
-    els.lastUpdate.textContent = `Updated ${new Date().toLocaleString('en-GB', { dateStyle: 'medium', timeStyle: 'short' })}`;
+    renderTiles(collectAssets(await loadLive()));
   } catch (err) {
     showError(err.message || 'Failed to load statistics.');
-    els.lastUpdate.textContent = 'Update failed';
+    const last = (state.history.points || []).at(-1);
+    if (last) {
+      animateNumber(els.installs, last.assets.install);
+      animateNumber(els.connects, last.assets.connect);
+    }
   }
+
+  renderChart();
+  els.lastUpdate.textContent = `Updated ${new Date().toLocaleString('en-GB', { dateStyle: 'medium', timeStyle: 'short' })}`;
 }
 
 els.ranges.addEventListener('click', (e) => {

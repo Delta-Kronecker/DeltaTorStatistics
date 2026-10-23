@@ -8,8 +8,6 @@
   --muted: #8b8b95;
   --gold: #d4af37;
   --gold-dim: #9a7f2a;
-  --green: #4fbf7a;
-  --red: #e06161;
   --radius: 6px;
 }
 
@@ -27,8 +25,6 @@ body {
 }
 
 a { color: inherit; text-decoration: none; }
-
-.ta-r { text-align: right; }
 
 /* ---------- topbar ---------- */
 .topbar {
@@ -130,17 +126,6 @@ a { color: inherit; text-decoration: none; }
 }
 
 .tile-value.tile-soon { font-size: 20px; color: var(--gold); font-weight: 600; }
-
-.tile-foot { margin-top: 8px; font-size: 12.5px; display: flex; gap: 6px; align-items: center; }
-
-.delta {
-  font-weight: 600;
-  font-variant-numeric: tabular-nums;
-  direction: ltr;
-}
-
-.delta.up { color: var(--green); }
-.delta.flat { color: var(--muted); }
 
 /* ---------- panel ---------- */
 .panel {
