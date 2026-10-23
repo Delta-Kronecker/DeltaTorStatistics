@@ -9,10 +9,7 @@ const els = {
   installs: document.getElementById('androidInstalls'),
   connects: document.getElementById('androidConnects'),
   lastUpdate: document.getElementById('lastUpdate'),
-  refreshBtn: document.getElementById('refreshBtn'),
   errorBox: document.getElementById('errorBox'),
-  liveDot: document.getElementById('liveDot'),
-  liveLabel: document.getElementById('liveLabel'),
   ranges: document.getElementById('ranges'),
   chartEmpty: document.getElementById('chartEmpty'),
 };
@@ -243,11 +240,6 @@ function escapeHtml(s) {
   return String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 }
 
-function setStatus(ok, text) {
-  els.liveDot.className = 'live-dot ' + (ok ? 'on' : 'off');
-  els.liveLabel.textContent = text;
-}
-
 /* ---------------- load ---------------- */
 
 async function loadHistory() {
@@ -268,7 +260,6 @@ async function loadLive() {
 }
 
 async function load() {
-  els.refreshBtn.classList.add('loading');
   try {
     const [releases] = await Promise.all([loadLive(), loadHistory()]);
     state.releases = releases;
@@ -277,19 +268,12 @@ async function load() {
     renderTiles(assets);
     renderChart();
 
-    const pts = (state.history.points || []).length;
     els.lastUpdate.textContent = `Updated ${new Date().toLocaleString('en-GB', { dateStyle: 'medium', timeStyle: 'short' })}`;
-    setStatus(true, pts ? `Live · ${pts} snapshots` : 'Live');
   } catch (err) {
     showError(err.message || 'Failed to load statistics.');
-    setStatus(false, 'Error');
     els.lastUpdate.textContent = 'Update failed';
-  } finally {
-    els.refreshBtn.classList.remove('loading');
   }
 }
-
-els.refreshBtn.addEventListener('click', load);
 
 els.ranges.addEventListener('click', (e) => {
   const btn = e.target.closest('.range');
