@@ -79,10 +79,15 @@ function renderTiles(assets) {
 
 const EMPTY_MSG = 'Not enough snapshots in this range yet.<br><small>A snapshot is collected every hour.</small>';
 
+// Asia/Tehran is UTC+3:30; Iran has had no DST since 2022
+const TZ_OFFSET_MS = 3.5 * 60 * 60 * 1000;
+
+const floorTehran = (time, ms) => Math.floor((time + TZ_OFFSET_MS) / ms) * ms - TZ_OFFSET_MS;
+
 function bucketConfig(days) {
-  if (days === 1) return { ms: 3600000, fmt: (d) => d.getHours().toString().padStart(2, '0') + ':00' };
-  if (days === 7) return { ms: 21600000, fmt: (d) => `${d.getDate()}/${d.getMonth() + 1} ${d.getHours().toString().padStart(2, '0')}h` };
-  return { ms: 86400000, fmt: (d) => `${d.getDate()}/${d.getMonth() + 1}` };
+  if (days === 1) return { ms: 3600000, fmt: (d) => d.getUTCHours().toString().padStart(2, '0') + ':00' };
+  if (days === 7) return { ms: 21600000, fmt: (d) => `${d.getUTCDate()}/${d.getUTCMonth() + 1} ${d.getUTCHours().toString().padStart(2, '0')}h` };
+  return { ms: 86400000, fmt: (d) => `${d.getUTCDate()}/${d.getUTCMonth() + 1}` };
 }
 
 function buildSeries(points, days) {
@@ -96,7 +101,7 @@ function buildSeries(points, days) {
     const prev = slice[i - 1];
     const cur = slice[i];
     const time = new Date(cur.t).getTime();
-    const bucket = Math.floor(time / cfg.ms) * cfg.ms;
+    const bucket = floorTehran(time, cfg.ms);
     if (!buckets.has(bucket)) {
       buckets.set(bucket, { installs: 0, connects: 0, t: bucket });
       keys.push(bucket);
@@ -110,7 +115,7 @@ function buildSeries(points, days) {
   keys.sort((a, b) => a - b);
 
   return {
-    labels: keys.map((k) => cfg.fmt(new Date(k))),
+    labels: keys.map((k) => cfg.fmt(new Date(k + TZ_OFFSET_MS))),
     installs: keys.map((k) => buckets.get(k).installs),
     connects: keys.map((k) => buckets.get(k).connects),
   };
@@ -281,7 +286,7 @@ async function load() {
   }
 
   renderChart();
-  els.lastUpdate.textContent = `Updated ${new Date().toLocaleString('en-GB', { dateStyle: 'medium', timeStyle: 'short' })}`;
+  els.lastUpdate.textContent = `Updated ${new Date().toLocaleString('en-GB', { dateStyle: 'medium', timeStyle: 'short', timeZone: 'Asia/Tehran' })}`;
 }
 
 els.ranges.addEventListener('click', (e) => {
