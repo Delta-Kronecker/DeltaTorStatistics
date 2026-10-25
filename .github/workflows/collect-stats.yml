@@ -1,8 +1,7 @@
 name: Collect stats
 on:
   schedule:
-    - cron: "7 * * * *"
-    - cron: "37 * * * *"
+    - cron: 0 */6 * * *
   workflow_dispatch:
 
 permissions:
