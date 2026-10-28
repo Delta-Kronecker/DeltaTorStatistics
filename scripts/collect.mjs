@@ -6,7 +6,7 @@ const REPO = process.env.STATS_REPO || 'Delta-Kronecker/ForInstallationStatistic
 const API = `https://api.github.com/repos/${REPO}/releases?per_page=100`;
 const HISTORY = path.resolve('data/history.json');
 const MAX_POINTS = 90 * 24;
-const MIN_GAP_MS = 50 * 60 * 1000;
+const MIN_GAP_MS = 5 * 60 * 1000;
 
 // Keep in sync with the asset lists in app.js
 const INSTALL = ['deltatorandroid213'];
